@@ -303,6 +303,13 @@ for i in range(len(user_ID)):
 
 f.close()
 
+# For really big data, the dictionary may not fit into memory, use parallel.
+# Divide the big file into multiple chunks for workers.
+# Each workers read one line at a time, store key-value pairs in separate files.
+# E: worker1{key1:[v1, v2],key2:[v1]}; worker2{key1:[v1, v3]; key4:[v1]} 
+# Then collect all key-value pairs with the same keys from all files, divide
+# into tasks and use several works to aggregate 
+
 #------------------------------------------------------------
 # try this!
 for i in mydict.keys():
