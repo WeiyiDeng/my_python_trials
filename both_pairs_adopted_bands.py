@@ -18,29 +18,30 @@
 
 import csv
 
-# read lines one by one
-# saving aggregrated info of all individuals in memory
-d = open('/Python34/bandadoptions3.csv','r',encoding="utf-8")
-f = open('/Python34/adoptiondict.csv', "w")
-mydoc = csv.writer(f, lineterminator='\n')
-try:
-    r = csv.reader(d)
-    line_old = next(r)              # read first line
-    mylist = [{int(line_old[1]):int(line_old[2])}]
-    ind = 0
-    for row in r:
-        line_new = row
-        if line_new[0] == line_old[0]:
-            mylist[ind][int(line_new[1])] = int(line_new[2])
-        else:
-            mylist.append({int(line_new[1]):int(line_new[2])})
-            mydoc.writerow([mylist[ind]])
-            ind = ind+1
-        line_old = line_new
-        mydoc.writerow([line_old[0],mylist[ind]])
-finally:
-    d.close()
-    f.close()
+### w: sth is wrong with this one, produces duplicated result, do not try !!
+### read lines one by one
+### saving aggregrated info of all individuals in memory
+##d = open('/Python34/bandadoptions3.csv','r',encoding="utf-8")
+##f = open('/Python34/adoptiondict.csv', "w")
+##mydoc = csv.writer(f, lineterminator='\n')
+##try:
+##    r = csv.reader(d)
+##    line_old = next(r)              # read first line
+##    mylist = [{int(line_old[1]):int(line_old[2])}]
+##    ind = 0
+##    for row in r:
+##        line_new = row
+##        if line_new[0] == line_old[0]:
+##            mylist[ind][int(line_new[1])] = int(line_new[2])
+##        else:
+##            mylist.append({int(line_new[1]):int(line_new[2])})
+##            mydoc.writerow([mylist[ind]])
+##            ind = ind+1
+##        line_old = line_new
+##        mydoc.writerow([line_old[0],mylist[ind]])
+##finally:
+##    d.close()
+##    f.close()
 
 
 # not saving aggregrated info of all individuals in memory
@@ -85,6 +86,11 @@ while ww[0] != '2':
 d = open('/Python34/adoptiondict.csv','r',encoding="utf-8")
 r = csv.reader(d)
 myselect = [row for row in r if row[0] == '2']
+# the expression above uses list comprehension, see google python course sorting
+# E:
+mylist = [1,2,3,4,5]
+mytrial = [i*i for i in mylist]
+mytrial = [i for i in mylist if i <= 4]
 
 # or read the whole file into memory as a large list
 # still need to re-start to find another line
@@ -148,6 +154,7 @@ finally:
     f.close()
 
 ###--------------------------------------------------------------
+# read all info into mylist and use it to write week difference
 import csv
 d = open('/Python34/bandadoptions3.csv','r',encoding="utf-8")
 f = open('/Python34/wtryverify.csv', "w")
@@ -206,6 +213,7 @@ finally:
 
 
 ###--------------------------------------------------------------
+# gather number of bands adopted by each individual
 import csv
 import ast
 
@@ -226,6 +234,7 @@ finally:
 
 
 ###---------------------------------------------------------------
+# write each element of the week difference lists in a row
 d = open('/Python34/adoptionpairs.csv','r',encoding="utf-8")
 f = open('/Python34/adoptionpairs_mod.csv', "w")
 mydoc = csv.writer(f, lineterminator='\n')
@@ -239,9 +248,6 @@ try:
 finally:
     d.close()
     f.close()
-
-
-
 
 
 

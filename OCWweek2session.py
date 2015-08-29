@@ -5,6 +5,8 @@ age = input("what is your age? ")
 location = input("where are you now? ")
 print(name, "ages", age, "lives in", location)
 
+print(x, end = '')            # in python 3 to omit new line
+
 print('''once
 upon
 a
